@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Georgia&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Georgia", serif;
+
+  --color-brand-cream: #FDFBF7;
+  --color-brand-forest: #1B3022;
+  --color-brand-sage: #4E6E58;
+  --color-brand-gold: #B8860B;
+  --color-brand-text: #2A2A2A;
+  --color-white: #FFFFFF;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-cream text-brand-text font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-brand-forest;
+  }
+}
+
+.premium-gradient {
+  background: var(--color-brand-forest);
+}
+
+.card-shadow {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.plan-card-border {
+  border: 1px solid rgba(78, 110, 88, 0.15);
+}
