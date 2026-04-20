@@ -75,10 +75,10 @@ export default function Contact() {
 
             <div className="pt-8">
                <a 
-                 href="https://wa.me/923001234567" 
+                 href="https://wa.me/923362115517" 
                  target="_blank" 
                  rel="noopener noreferrer"
-                 className="inline-flex items-center gap-4 bg-green-500 text-white px-8 py-4 rounded-sm font-bold shadow-xl hover:bg-green-600 transition-all"
+                 className="inline-flex items-center gap-4 bg-brand-sage text-white px-8 py-4 rounded-sm font-bold shadow-xl hover:bg-brand-forest transition-all"
                >
                  <MessageSquare className="w-5 h-5" />
                  Connect via WhatsApp

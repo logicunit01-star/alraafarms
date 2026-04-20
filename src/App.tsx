@@ -7,6 +7,7 @@ import InvestmentPlans from './pages/InvestmentPlans';
 import SecurityTransparency from './pages/SecurityTransparency';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Calculator from './pages/Calculator';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="security" element={<SecurityTransparency />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="calculator" element={<Calculator />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

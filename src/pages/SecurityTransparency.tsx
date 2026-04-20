@@ -28,11 +28,22 @@ export default function SecurityTransparency() {
   return (
     <div className="bg-brand-cream min-h-screen">
       {/* Header */}
-      <section className="py-24 px-6 bg-brand-forest text-brand-cream text-center relative">
-         <div className="max-w-3xl mx-auto space-y-6 relative z-10">
+      <section className="relative h-[60vh] flex items-center justify-center px-6 overflow-hidden">
+        {/* Background Image / Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1920&q=80"
+            alt="Security and Transparency"
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-brand-forest/80 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-linear-to-b from-brand-forest/60 via-brand-forest/40 to-brand-cream/10" />
+        </div>
+         <div className="max-w-3xl mx-auto space-y-6 relative z-10 text-center">
           <h1 className="text-4xl md:text-6xl font-serif font-bold italic text-brand-gold">Trust by Design.</h1>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold">Security & Transparency</h2>
-          <p className="text-brand-cream/70 text-lg md:text-xl">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-cream">Security & <span className="text-brand-gold italic">Transparency</span></h2>
+          <p className="text-brand-cream/90 text-lg md:text-xl font-light">
              We understand that agricultural investment requires more than just good will—it requires proof. Explore our multi-layered trust ecosystem.
           </p>
         </div>
@@ -54,7 +65,7 @@ export default function SecurityTransparency() {
                 </div>
                 <div className="space-y-4">
                   <h3 className="text-2xl font-serif font-bold text-brand-forest">{feature.title}</h3>
-                  <p className="text-brand-sage leading-relaxed italic">
+                  <p className="text-brand-forest/80 font-sans leading-relaxed">
                     {feature.desc}
                   </p>
                 </div>
@@ -69,7 +80,7 @@ export default function SecurityTransparency() {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
           <div className="flex-1 space-y-8 relative z-10">
             <div className="w-20 h-1 bg-brand-gold" />
-            <h2 className="text-4xl font-serif font-bold">Traceability Dashboard</h2>
+            <h2 className="text-4xl font-serif font-bold text-brand-cream">Traceability Dashboard</h2>
             <p className="text-brand-cream/70 text-lg leading-relaxed">
               Every animal in our fattening program is tagged with a unique digital ID. This allows us to track feed intake, weight gain, and health intervention history for every single asset accurately.
             </p>
@@ -114,7 +125,7 @@ export default function SecurityTransparency() {
                          </div>
                          <div className="p-3 bg-brand-cream/5 text-[8px]">
                             <p className="opacity-50">Health Status</p>
-                            <p className="font-bold text-green-400">OPTIMAL</p>
+                            <p className="font-bold text-brand-sage">OPTIMAL</p>
                          </div>
                       </div>
                    </div>
@@ -128,7 +139,7 @@ export default function SecurityTransparency() {
       <section className="py-24 px-6 text-center">
          <div className="max-w-3xl mx-auto space-y-8">
             <h3 className="text-3xl font-serif font-bold text-brand-forest">Unwavering Reporting Integrity</h3>
-            <p className="text-brand-sage leading-relaxed italic">
+            <p className="text-brand-forest/80 font-sans leading-relaxed">
               "At Al Raa Farms, we believe that transparency is not just about showing the good news; it's about accurate, timely reporting that builds long-term confidence. Our investors receive standardized reports that break down weight gains, expenditure vs projection, and market sentiment updates."
             </p>
             <div className="pt-8">

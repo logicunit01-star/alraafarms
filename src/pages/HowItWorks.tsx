@@ -4,33 +4,37 @@ import { ArrowRight, ShoppingCart, Activity, Weight, ShoppingBag, Banknote } fro
 const steps = [
   {
     icon: <ShoppingCart className="w-8 h-8" />,
-    title: "Livestock Sourcing",
-    desc: "We source healthy calves (weighing 180kg-220kg) from reputable breeders. Our expert veterinarians conduct rigorous health checks to ensure baseline quality.",
-    details: ["Selective sourcing by weight/breed", "Immediate quarantine protocol", "Full vaccination entry"]
+    title: "Strategic Sourcing",
+    desc: "Healthy calves are systematically acquired at a market-optimized ~80k PKR benchmark. Our veterinarians conduct rigorous checks to establish baseline health.",
+    details: ["Selective sourcing by weight/breed", "Strict entry quarantine", "Full vaccination baseline"],
+    image: "https://images.unsplash.com/photo-1594771804886-a933bb2d609b?auto=format&fit=crop&w=800&q=80"
   },
   {
     icon: <Activity className="w-8 h-8" />,
-    title: "Precision Management",
-    desc: "The animals enter our world-class fattening facility. Here, they are managed under strict environmental controls with data-driven monitoring.",
-    details: ["24/7 CCTV & Field monitoring", "Climate controlled sheds", "Digital health records"]
+    title: "90-Day Fattening Protocol",
+    desc: "We enforce a 90-day nutrition cycle yielding 20-25kg rapid weight gain. Our world-class facilities maintain strict environmental controls for peak animal performance.",
+    details: ["24/7 condition monitoring", "Custom organic feed mix", "Digital weight tracking"],
+    image: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800&q=80"
   },
   {
-    icon: <Weight className="w-8 h-8" />,
-    title: "Fattening Cycle",
-    desc: "A high-protein, standardized diet ensures steady weight gain. Over 6-9 months, animals achieve target weight (400kg+) optimized for the premium meat market.",
-    details: ["Custom organic feed mix", "Regular weight audits", "Stress-free environment"]
+    title: "Scale Oversight",
+    desc: "Risk is mitigated natively via continuous veterinary monitoring, absolute adherence to strict vaccination protocols, and physical buffer stock protection.",
+    details: ["Takaful buffer integration", "15-day health audits", "Low mortality focus"],
+    image: "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80"
   },
   {
     icon: <ShoppingBag className="w-8 h-8" />,
-    title: "Market Exit",
-    desc: "Once peak weight is achieved, animals are sold through our network of premium retailers, exporters, and local wholesale markets (Mandi).",
-    details: ["Export-grade bulk sales", "Retail butcher partnerships", "Direct-to-consumer events"]
+    title: "Premium Sales Exit",
+    desc: "At market peak, livestock is exited into high-end retail and wholesale ecosystems, targeting ~128k PKR per animal for rapid capital turnover.",
+    details: ["Export-grade alignment", "Eid-ul-Adha premium targeting", "Bulk B2B sales"],
+    image: "https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=800&q=80"
   },
   {
     icon: <Banknote className="w-8 h-8" />,
     title: "Profit Distribution",
     desc: "After accounting for costs (feed, labor, management), the net profit is distributed between the investor and Al Raa Farms according to the agreed ratio.",
-    details: ["Transparent audit reports", "Quarterly disbursements", "Re-investment options"]
+    details: ["Transparent audit reports", "Quarterly disbursements", "Re-investment options"],
+    image: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
@@ -38,11 +42,24 @@ export default function HowItWorks() {
   return (
     <div className="bg-brand-cream min-h-screen">
       {/* Header */}
-      <section className="py-24 px-6 bg-brand-forest text-brand-cream text-center">
-        <div className="max-w-3xl mx-auto space-y-6">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold">The Fattening Cycle</h1>
-          <p className="text-brand-cream/70 text-lg md:text-xl">
-            A scientifically managed, operationally transparent, and Shariah-compliant model for agricultural growth.
+      <section className="relative h-[60vh] flex items-center justify-center px-6 overflow-hidden">
+        {/* Background Image / Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1920&q=80"
+            alt="The Fattening Cycle"
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-brand-forest/80 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-linear-to-b from-brand-forest/60 via-brand-forest/40 to-brand-cream/10" />
+        </div>
+        <div className="max-w-3xl mx-auto space-y-6 relative z-10 text-center">
+          <h1 className="text-4xl md:text-6xl font-serif font-bold text-brand-cream">
+            The <span className="text-brand-gold italic">Fattening</span> Cycle
+          </h1>
+          <p className="text-brand-cream/90 font-sans text-lg md:text-xl font-light">
+            A scientifically managed, operationally transparent, and highly capitalized model for agricultural growth.
           </p>
         </div>
       </section>
@@ -82,21 +99,21 @@ export default function HowItWorks() {
                   {step.icon}
                 </div>
                 <h2 className="text-3xl font-serif font-bold text-brand-forest">{step.title}</h2>
-                <p className="text-brand-sage leading-relaxed text-lg italic">
-                  "{step.desc}"
+                <p className="text-brand-forest/80 font-sans leading-relaxed text-lg">
+                  {step.desc}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {step.details.map((detail, dIdx) => (
                     <div key={dIdx} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-brand-gold rounded-full" />
-                      <span className="text-sm font-semibold text-brand-sage uppercase tracking-wide italic">{detail}</span>
+                      <div className="w-1.5 h-1.5 bg-brand-gold rounded-full shrink-0" />
+                      <span className="text-sm font-semibold font-sans text-brand-sage uppercase tracking-wide">{detail}</span>
                     </div>
                   ))}
                 </div>
               </div>
               <div className="flex-1 w-full aspect-video bg-white p-4 border border-brand-gold/10 shadow-xl overflow-hidden group">
                 <img
-                  src={`https://picsum.photos/seed/farm-${idx}/800/450`}
+                  src={step.image}
                   alt={step.title}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                   referrerPolicy="no-referrer"
@@ -114,23 +131,23 @@ export default function HowItWorks() {
              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold opacity-10 rounded-full translate-x-32 -translate-y-32" />
              <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div className="space-y-6">
-                  <h3 className="text-3xl font-serif font-bold italic text-brand-gold">Understanding the Economics</h3>
-                  <p className="text-brand-cream/70 leading-relaxed">
+                  <h3 className="text-3xl font-serif font-bold text-brand-gold">Understanding the Economics</h3>
+                  <p className="text-brand-cream/90 font-sans font-light leading-relaxed">
                     Livestock meat fattening logic is simple yet powerful: Purchasing weight below market average, adding value through scientific nutrition, and selling at market peak.
                   </p>
                   <div className="space-y-4">
-                    <div className="p-4 border-l-2 border-brand-gold bg-brand-cream/5">
-                      <p className="text-xs uppercase font-bold text-brand-gold tracking-widest mb-1">Growth Metric</p>
-                      <p className="text-brand-cream font-medium">Average weight gain of 0.8kg - 1.2kg per day depending on breed and season.</p>
+                    <div className="p-4 border-l-2 border-brand-gold bg-brand-cream/5 shadow-sm rounded-r-md">
+                      <p className="text-xs font-sans uppercase font-bold text-brand-gold tracking-widest mb-1">Growth Metric</p>
+                      <p className="text-brand-cream font-sans font-medium">Targeting robust weight gain of 20-25kg per animal during a rapid 90-day cycle.</p>
                     </div>
-                    <div className="p-4 border-l-2 border-brand-gold bg-brand-cream/5">
-                      <p className="text-xs uppercase font-bold text-brand-gold tracking-widest mb-1">Management Ratio</p>
-                      <p className="text-brand-cream font-medium">1 skilled farm manager per 50 animals, supported by 24/7 automated digital reporting.</p>
+                    <div className="p-4 border-l-2 border-brand-gold bg-brand-cream/5 shadow-sm rounded-r-md">
+                      <p className="text-xs font-sans uppercase font-bold text-brand-gold tracking-widest mb-1">Management Ratio</p>
+                      <p className="text-brand-cream font-sans font-medium">1 skilled farm manager per 50 animals, supported by 24/7 automated digital reporting.</p>
                     </div>
                   </div>
                 </div>
-                <div className="bg-brand-cream/5 p-8 rounded-sm border border-brand-cream/10 backdrop-blur-sm">
-                   <p className="text-center font-serif text-2xl mb-8">Model Comparison</p>
+                <div className="bg-brand-cream/5 p-8 rounded-xl border border-brand-cream/10 backdrop-blur-md shadow-2xl">
+                   <p className="text-center font-serif text-2xl mb-8 font-bold text-brand-cream">Model Comparison</p>
                    <div className="space-y-6">
                       <div className="space-y-2">
                         <div className="flex justify-between text-xs tracking-widest uppercase font-bold text-brand-gold">
@@ -153,7 +170,7 @@ export default function HowItWorks() {
                       <div className="space-y-2">
                         <div className="flex justify-between text-xs tracking-widest uppercase font-bold text-brand-gold">
                           <span>Liquidity</span>
-                          <span>6-9 Month Cycles</span>
+                          <span>90-Day Rapid Cycles</span>
                         </div>
                         <div className="h-1 bg-brand-cream/10">
                           <div className="h-full bg-brand-gold w-1/2" />

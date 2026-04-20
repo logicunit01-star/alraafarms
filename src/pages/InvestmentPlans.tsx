@@ -5,43 +5,43 @@ import { Link } from 'react-router-dom';
 const plans = [
   {
     name: "Growth Tier",
-    range: "$5,000 - $25,000",
-    cycle: "6-9 Months",
+    range: "$25,000 - $50,000",
+    cycle: "12-24 Months Horizon",
     purity: "Entry Level",
     features: [
       "Direct livestock allocation",
-      "Quarterly status reports",
-      "Shared profit model",
-      "Exit at end of cycle",
-      "Standard risk exposure"
+      "Cycle-Based Distributions",
+      "Reinvestment Options",
+      "Full Exit mechanism",
+      "Mitigation: Health & Buffer"
     ],
     recommended: false
   },
   {
     name: "Portfolio Tier",
-    range: "$25,001 - $100,000",
-    cycle: "9 Months",
+    range: "$50,000 - $150,000",
+    cycle: "12-24 Months Horizon",
     purity: "Mid-Level Professional",
     features: [
       "Priority herd allocation",
-      "Monthly operation reports",
-      "CCTV access for herd",
+      "Cycle-Based Distributions",
+      "Seamless Reinvestment Options",
       "Dedicated account manager",
-      "Rolling cycle options"
+      "Expedited Full Exit"
     ],
     recommended: true
   },
   {
     name: "Institutional Tier",
-    range: "$100k - $500k+",
-    cycle: "Flexible / Long-term",
+    range: "$150k - $500k+",
+    cycle: "12-24 Months Horizon",
     purity: "High Net Worth / Fund",
     features: [
       "Wholesale pricing benefits",
-      "Custom fattening schedules",
-      "Field visit privileges",
+      "Cycle-Based Distributions",
+      "Institutional Reinvestment",
       "Audit seat availability",
-      "Export priority participation"
+      "Custom Full Exit schedule"
     ],
     recommended: false
   }
@@ -51,13 +51,23 @@ export default function InvestmentPlans() {
   return (
     <div className="bg-brand-cream min-h-screen">
       {/* Header */}
-      <section className="py-24 px-6 bg-brand-forest text-brand-cream text-center relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-          <img src="https://picsum.photos/seed/money-bg/1920/1080?grayscale" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+      <section className="relative h-[50vh] flex items-center justify-center px-6 overflow-hidden">
+        {/* Background Image / Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1594771804886-a933bb2d609b?auto=format&fit=crop&w=1920&q=80"
+            alt="Premium Agricultural Investment"
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-brand-forest/80 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-linear-to-b from-brand-forest/60 via-brand-forest/40 to-brand-cream/10" />
         </div>
-        <div className="max-w-3xl mx-auto space-y-6 relative z-10">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold">Investment Tiers</h1>
-          <p className="text-brand-cream/70 text-lg md:text-xl">
+        <div className="max-w-3xl mx-auto space-y-6 relative z-10 text-center">
+          <h1 className="text-4xl md:text-6xl font-serif font-bold text-brand-cream">
+            Investment <span className="text-brand-gold italic">Tiers</span>
+          </h1>
+          <p className="text-brand-cream/90 text-lg md:text-xl font-light">
             Ethical wealth creation tailored to your capacity. Shariah-compliant asset growth at every level.
           </p>
         </div>
@@ -90,13 +100,13 @@ export default function InvestmentPlans() {
                 </div>
 
                 <div className="space-y-6 mb-12">
-                   <div className="flex items-center gap-3 text-brand-sage text-sm">
+                   <div className="flex items-center gap-3 text-brand-forest/80 font-sans text-sm">
                       <Calendar className="w-4 h-4 text-brand-gold" />
                       <span>Standard Cycle: <b>{plan.cycle}</b></span>
                    </div>
-                   <div className="flex items-center gap-3 text-brand-sage text-sm">
+                   <div className="flex items-center gap-3 text-brand-forest/80 font-sans text-sm">
                       <TrendingUp className="w-4 h-4 text-brand-gold" />
-                      <span>Target ROI Scope: <b>18% - 22%</b></span>
+                      <span>Target ROI Scope: <b>~ 43.68% Year 1</b></span>
                    </div>
                 </div>
 
@@ -105,7 +115,7 @@ export default function InvestmentPlans() {
                   {plan.features.map((feature, fIdx) => (
                     <div key={fIdx} className="flex items-start gap-3">
                       <Check className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
-                      <span className="text-sm text-brand-sage">{feature}</span>
+                      <span className="text-sm font-sans text-brand-forest/80">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -132,8 +142,9 @@ export default function InvestmentPlans() {
           <Info className="w-8 h-8 text-brand-gold shrink-0" />
           <div className="space-y-4">
             <h5 className="font-serif font-bold text-xl text-brand-forest">Important Risk Disclosure</h5>
-            <p className="text-sm text-brand-sage leading-relaxed">
-              Historical results are not indicative of future performance. As with any Shariah-compliant real asset investment, your capital is subject to market risks, including animal mortality and price fluctuations at meat markets. Al Raa Farms mitigates these through scientific management and insurance, but does not provide fixed return guarantees as per Islamic Finance principles.
+            <p className="text-sm font-sans text-brand-forest/80 leading-relaxed">
+              Historical results are not indicative of future performance. As with any Shariah-compliant real asset investment, your capital is subject to market risks, including animal mortality and price fluctuations at meat markets. 
+              Al Raa Farms strictly isolates risk via <b>Mitigation: Health</b> (mandatory comprehensive vaccination loops) and <b>Mitigation: Protection</b> (inclusive buffer stock and Takaful insurance). However, as per Islamic Finance, we do not provide fixed return guarantees.
             </p>
           </div>
         </div>
@@ -141,48 +152,60 @@ export default function InvestmentPlans() {
 
       {/* ROI Scenario */}
       <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto text-center space-y-12">
-          <div className="space-y-4">
-            <Target className="w-12 h-12 text-brand-gold mx-auto" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div className="lg:col-span-4 space-y-8">
+            <Target className="w-16 h-16 text-brand-gold" />
             <h2 className="text-4xl font-serif font-bold text-brand-forest">Target Economics Scenarios</h2>
-            <p className="text-brand-sage">Based on industry-standard fattening cycles (6 months).</p>
+            <p className="text-brand-forest/70 font-sans text-lg leading-relaxed">
+              Based on compiling back-to-back 90-day core fattening cycles under strict nutritional governance.
+            </p>
+            <div className="rounded-xl overflow-hidden shadow-2xl aspect-[4/3] border border-brand-gold/20">
+               <img 
+                 src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=800&q=80" 
+                 alt="Livestock Investment" 
+                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000 grayscale hover:grayscale-0"
+                 referrerPolicy="no-referrer"
+               />
+            </div>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="border-b border-brand-gold/30">
-                  <th className="py-6 px-4 text-left font-serif text-lg">Metric</th>
-                  <th className="py-6 px-4 text-center font-serif text-lg text-brand-sage italic">Conservative</th>
-                  <th className="py-6 px-4 text-center font-serif text-lg text-brand-gold">Moderate (Target)</th>
-                  <th className="py-6 px-4 text-center font-serif text-lg text-brand-sage italic">Optimistic</th>
-                </tr>
-              </thead>
-              <tbody className="text-brand-text">
-                <tr className="border-b border-brand-gold/10">
-                  <td className="py-6 px-4 text-left font-bold text-sm uppercase tracking-wider">Weight Gain (Daily)</td>
-                  <td className="py-6 px-4 text-center">0.7 kg</td>
-                  <td className="py-6 px-4 text-center font-bold">0.9 kg</td>
-                  <td className="py-6 px-4 text-center">1.2 kg</td>
-                </tr>
-                <tr className="border-b border-brand-gold/10">
-                  <td className="py-6 px-4 text-left font-bold text-sm uppercase tracking-wider">Feed Conversion Ratio</td>
-                  <td className="py-6 px-4 text-center">7.5:1</td>
-                  <td className="py-6 px-4 text-center font-bold">6.0:1</td>
-                  <td className="py-6 px-4 text-center">5.0:1</td>
-                </tr>
-                <tr className="border-b border-brand-gold/10">
-                  <td className="py-6 px-4 text-left font-bold text-sm uppercase tracking-wider">Net Cycle Return</td>
-                  <td className="py-6 px-4 text-center">7% - 9%</td>
-                  <td className="py-6 px-4 text-center font-bold text-brand-gold">10% - 12%</td>
-                  <td className="py-6 px-4 text-center">14% - 16%</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="lg:col-span-8 bg-white p-8 md:p-12 rounded-xl shadow-xl border border-brand-gold/10">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-brand-gold/30">
+                    <th className="py-6 px-4 text-left font-serif text-lg text-brand-forest">Metric</th>
+                    <th className="py-6 px-4 text-center font-sans text-sm font-bold uppercase tracking-widest text-brand-forest/60">Conservative</th>
+                    <th className="py-6 px-4 text-center font-serif text-xl font-bold text-brand-gold">Moderate (Target)</th>
+                    <th className="py-6 px-4 text-center font-sans text-sm font-bold uppercase tracking-widest text-brand-forest/60">Optimistic</th>
+                  </tr>
+                </thead>
+                <tbody className="text-brand-forest">
+                  <tr className="border-b border-brand-gold/10 hover:bg-brand-gold/5 transition-colors">
+                    <td className="py-6 px-4 text-left font-bold font-sans text-sm uppercase tracking-wider text-brand-forest/70">Weight Gain (90-Day Cycle)</td>
+                    <td className="py-6 px-4 text-center font-sans">15 kg</td>
+                    <td className="py-6 px-4 text-center font-sans font-bold text-lg text-brand-forest">20 kg - 25 kg</td>
+                    <td className="py-6 px-4 text-center font-sans">30 kg+</td>
+                  </tr>
+                  <tr className="border-b border-brand-gold/10 hover:bg-brand-gold/5 transition-colors">
+                    <td className="py-6 px-4 text-left font-bold font-sans text-sm uppercase tracking-wider text-brand-forest/70">Annualized Capital ROI</td>
+                    <td className="py-6 px-4 text-center font-sans">25.0%</td>
+                    <td className="py-6 px-4 text-center font-sans font-bold text-xl text-brand-gold block-pulse pt-7">43.68%</td>
+                    <td className="py-6 px-4 text-center font-sans">50.0%+</td>
+                  </tr>
+                  <tr className="border-b border-brand-gold/10 hover:bg-brand-gold/5 transition-colors">
+                    <td className="py-6 px-4 text-left font-bold font-sans text-sm uppercase tracking-wider text-brand-forest/70">Payback Horizon</td>
+                    <td className="py-6 px-4 text-center font-sans">24 Months</td>
+                    <td className="py-6 px-4 text-center font-sans font-bold text-lg text-brand-forest">12 - 18 Months</td>
+                    <td className="py-6 px-4 text-center font-sans">12 Months</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[10px] text-brand-forest/40 uppercase tracking-widest font-sans mt-8 text-center">
+              *Returns calculated after operational expenses and Mudarabah profit formulation.
+            </p>
           </div>
-          <p className="text-[10px] text-brand-forest/40 uppercase tracking-widest italic pt-4">
-            *Returns calculated after operational expenses and shared profit allocation.
-          </p>
         </div>
       </section>
     </div>
