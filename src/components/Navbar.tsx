@@ -35,7 +35,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-3 group">
           <div className="w-14 h-14 bg-white rounded-xl shadow-lg border border-brand-gold/30 p-1 flex items-center justify-center transition-transform group-hover:scale-105">
-            <img src="/logo.jpeg" alt="Al Raa Farms Logo" className="w-full h-full object-contain rounded-lg" />
+            <img src="/web-logo.png" alt="Al Raa Farms Logo" className="w-full h-full object-contain rounded-lg" />
           </div>
           <div className="flex flex-col">
             <span className="font-serif font-bold text-xl leading-tight tracking-tight transition-colors text-brand-forest">AL RAA</span>

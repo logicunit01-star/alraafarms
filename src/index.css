@@ -6,9 +6,9 @@
   --font-serif: "Playfair Display", "Georgia", serif;
 
   --color-brand-cream: #FDFBF7;
-  --color-brand-forest: #1B3022;
-  --color-brand-sage: #4E6E58;
-  --color-brand-gold: #B8860B;
+  --color-brand-forest: #7A0C19; /* Al Raa Maroon */
+  --color-brand-sage: #9C5B66;   /* Al Raa Muted Rose */
+  --color-brand-gold: #E5A90A;   /* Al Raa Warm Gold-Yellow */
   --color-brand-text: #2A2A2A;
   --color-white: #FFFFFF;
 }
@@ -24,7 +24,7 @@
 }
 
 .premium-gradient {
-  background: var(--color-brand-forest);
+  background: linear-gradient(135deg, var(--color-brand-forest) 0%, #4A050E 100%);
 }
 
 .card-shadow {
