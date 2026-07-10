@@ -37,7 +37,7 @@ export default function Home() {
               <span className="text-brand-gold text-[10px] font-bold uppercase tracking-widest">100% Shariah Compliant</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-brand-cream leading-[1.1]">
+            <h1 className="text-5xl md:text-6xl font-serif font-bold text-brand-cream leading-[1.1]">
               Halal Wealth Through <br />
               <span className="text-brand-gold italic">90-Day</span> Livestock Cycles.
             </h1>
