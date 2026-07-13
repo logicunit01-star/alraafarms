@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'motion/react';
-import { MessageSquare, Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
+import { MessageSquare, Mail, Phone, MapPin, Send, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,11 +11,84 @@ export default function Contact() {
     plan: 'Portfolio Tier',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log('Onboarding request:', formData);
-    alert('Thank you for your interest. An Al Raa investment officer will contact you within 24 hours.');
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    const portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID;
+    const formId = import.meta.env.VITE_HUBSPOT_FORM_ID;
+
+    // Split name into first and last name if possible, or send full name as firstname
+    const nameParts = formData.name.trim().split(/\s+/);
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+
+    if (portalId && formId && portalId !== 'YOUR_HUBSPOT_PORTAL_ID' && formId !== 'YOUR_HUBSPOT_FORM_ID') {
+      try {
+        const response = await fetch(
+          `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              fields: [
+                { name: 'email', value: formData.email },
+                { name: 'firstname', value: firstName },
+                { name: 'lastname', value: lastName },
+                { name: 'phone', value: formData.phone },
+                { name: 'message', value: formData.message },
+                { name: 'investment_range', value: formData.investmentRange }
+              ],
+              context: {
+                pageUri: window.location.href,
+                pageName: document.title,
+              },
+            }),
+          }
+        );
+
+        if (response.ok) {
+          setSubmitStatus('success');
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            investmentRange: '',
+            plan: 'Portfolio Tier',
+            message: ''
+          });
+        } else {
+          console.error('HubSpot submission error:', response.statusText);
+          setSubmitStatus('error');
+        }
+      } catch (error) {
+        console.error('HubSpot connection error:', error);
+        setSubmitStatus('error');
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      // Fallback for development/testing when keys are not configured
+      console.warn('HubSpot keys not configured. Simulating successful submission...');
+      setTimeout(() => {
+        setSubmitStatus('success');
+        setIsSubmitting(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          investmentRange: '',
+          plan: 'Portfolio Tier',
+          message: ''
+        });
+      }, 1000);
+    }
   };
 
   return (
@@ -159,12 +232,50 @@ export default function Contact() {
                 ></textarea>
               </div>
 
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-md flex items-center gap-3 text-sm"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-emerald-900">Request Submitted</p>
+                    <p className="text-xs text-emerald-700">An Al Raa investment officer will contact you within 24 hours.</p>
+                  </div>
+                </motion.div>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-rose-50 border border-rose-200 text-rose-800 rounded-md flex items-center gap-3 text-sm"
+                >
+                  <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-rose-900">Submission Error</p>
+                    <p className="text-xs text-rose-700">Unable to submit request. Please verify details and try again.</p>
+                  </div>
+                </motion.div>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-brand-forest text-brand-gold py-5 font-bold tracking-widest text-xs uppercase hover:bg-brand-sage transition-all flex items-center justify-center gap-3 rounded-md"
+                disabled={isSubmitting}
+                className="w-full bg-brand-forest text-brand-gold py-5 font-bold tracking-widest text-xs uppercase hover:bg-brand-sage transition-all flex items-center justify-center gap-3 rounded-md disabled:opacity-75 disabled:cursor-not-allowed"
               >
-                Request Prospectus & Consultation
-                <ArrowRight className="w-4 h-4" />
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    Request Prospectus & Consultation
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
               </button>
             </form>
           </motion.div>
