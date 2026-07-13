@@ -27,6 +27,14 @@ export default function Contact() {
     const firstName = nameParts[0] || '';
     const lastName = nameParts.slice(1).join(' ') || '';
 
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop()?.split(';').shift();
+      return undefined;
+    };
+    const hutk = getCookie('hubspotutk');
+
     if (portalId && formId) {
       try {
         const response = await fetch(
@@ -48,6 +56,7 @@ export default function Contact() {
               context: {
                 pageUri: window.location.href,
                 pageName: document.title,
+                hutk: hutk,
               },
             }),
           }
