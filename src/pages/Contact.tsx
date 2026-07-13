@@ -19,15 +19,15 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    const portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID;
-    const formId = import.meta.env.VITE_HUBSPOT_FORM_ID;
+    const portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID || '246175508';
+    const formId = import.meta.env.VITE_HUBSPOT_FORM_ID || '9d2877c2-ba4a-439b-b5e4-04997ca1919d';
 
     // Split name into first and last name if possible, or send full name as firstname
     const nameParts = formData.name.trim().split(/\s+/);
     const firstName = nameParts[0] || '';
     const lastName = nameParts.slice(1).join(' ') || '';
 
-    if (portalId && formId && portalId !== 'YOUR_HUBSPOT_PORTAL_ID' && formId !== 'YOUR_HUBSPOT_FORM_ID') {
+    if (portalId && formId) {
       try {
         const response = await fetch(
           `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`,
